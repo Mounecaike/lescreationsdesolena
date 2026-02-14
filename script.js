@@ -47,9 +47,14 @@ function createCard(creation) {
 // Affichage en grille (≤ 6 items)
 function renderGrid() {
     const container = document.getElementById('creations-container');
+    
+    // Limiter à 3 créations sur mobile (≤ 768px)
+    const isMobile = window.innerWidth <= 768;
+    const displayedCreations = isMobile ? creationsData.slice(0, 3) : creationsData;
+    
     container.innerHTML = `
         <div class="creations-grid">
-            ${creationsData.map(creation => createCard(creation)).join('')}
+            ${displayedCreations.map(creation => createCard(creation)).join('')}
         </div>
     `;
 }
@@ -156,11 +161,14 @@ function goToSlide(index) {
 // Recalculer lors du redimensionnement
 let resizeTimeout;
 window.addEventListener('resize', () => {
-    if (!isCarousel) return;
-    
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-        updateCarousel();
+        if (isCarousel) {
+            updateCarousel();
+        } else {
+            // Recalculer l'affichage de la grille en cas de changement mobile/desktop
+            renderGrid();
+        }
     }, 250);
 });
 
