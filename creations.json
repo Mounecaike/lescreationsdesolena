@@ -1,0 +1,46 @@
+{
+  "creations": [
+    {
+      "id": 1,
+      "nom": "Décoration murale macramé",
+      "description": "Pièce unique tissée à la main",
+      "image": "assets/images/macrame-mural.jpg",
+      "plateformes": ["Vinted", "Etsy"]
+    },
+    {
+      "id": 2,
+      "nom": "Coussin brodé bohème",
+      "description": "Motifs floraux délicats",
+      "image": "assets/images/coussin-brode.jpg",
+      "plateformes": ["Vinted", "Leboncoin"]
+    },
+    {
+      "id": 3,
+      "nom": "Attrape-rêves artisanal",
+      "description": "Plumes naturelles et perles",
+      "image": "assets/images/attrape-reves.jpg",
+      "plateformes": ["Etsy", "eBay"]
+    },
+    {
+      "id": 4,
+      "nom": "Guirlande lumineuse",
+      "description": "Ambiance chaleureuse garantie",
+      "image": "assets/images/guirlande.jpg",
+      "plateformes": ["Vinted", "Etsy"]
+    },
+    {
+      "id": 5,
+      "nom": "Panier tressé naturel",
+      "description": "Fibres végétales écologiques",
+      "image": "assets/images/panier-tresse.jpg",
+      "plateformes": ["Leboncoin", "eBay"]
+    },
+    {
+      "id": 6,
+      "nom": "Mobile bébé bohème",
+      "description": "Douceur et élégance",
+      "image": "assets/images/mobile-bebe.jpg",
+      "plateformes": ["Etsy", "Vinted"]
+    }
+  ]
+}

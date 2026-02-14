@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les créations de Solena — Décoration & objets design imprimés en 3D</title>
+    <meta name="description" content="Objets déco et idées cadeaux imprimés en 3D : designs modernes, séries limitées et personnalisation. Retrouvez-nous sur Vinted, Etsy, eBay et Leboncoin.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Allura&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS externe -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <a href="#" class="logo">
+        <img src="assets/images/logo_solena_header.png" alt="Logo Les créations de Solena" class="logo">
+        </a>
+        <div class="burger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav">
+            <a href="#creations">Créations</a>
+            <a href="#about">À propos</a>
+            <a href="#where-buy">Où acheter</a>
+            <a href="#instagram">Instagram</a>
+            <a href="#contact">Contact</a>
+            <a href="#where-buy" class="btn-header">Acheter</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="assets/images/logo_solena.png" alt="Logo Les créations de Solena" class="hero-logo">
+            <p class="script-text script">Objets déco & idées cadeaux imprimés en 3D</p>
+<p>Des créations au style doux et moderne, conçues dans notre atelier et imprimées avec précision. Séries limitées, personnalisations et nouveautés régulières.</p>
+            <div class="hero-buttons">
+                <a href="#creations" class="btn-primary">Découvrir nos créations</a>
+                <a href="#where-buy" class="btn-secondary">Acheter maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRÉATIONS -->
+    <section id="creations" class="creations">
+        <h2 class="section-title">Nos créations</h2>
+        <p class="section-subtitle script">Design, impression 3D, finitions soignées</p>
+        
+        <!-- Conteneur qui sera rempli dynamiquement -->
+        <div id="creations-container"></div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section id="about" class="about">
+        <h2 class="section-title">Notre univers</h2>
+        <p class="section-subtitle script">Des créations qui racontent une histoire</p>
+        
+        <div class="about-content">
+            <p>
+                Les créations de Solena, c’est un atelier où le design rencontre l’impression 3D.
+                Nous imaginons des objets déco et des idées cadeaux au style doux et élégant,
+                puis nous les imprimons et les finissons avec soin pour un rendu propre et durable.
+                Chaque pièce est préparée avec attention, et certaines créations sont disponibles en séries limitées.
+            </p>
+        </div>
+
+        <div class="pillars">
+            <div class="pillar">
+                <i class="fas fa-gem"></i>
+                <h3>Qualité & finitions</h3>
+                <p>Impression précise, finitions propres, et contrôles avant expédition.</p>
+            </div>
+            <div class="pillar">
+                <i class="fas fa-palette"></i>
+                <h3>Créations originales</h3>
+                <p>Designs maison, séries limitées et nouveautés régulières.</p>
+            </div>
+            <div class="pillar">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Expédition soignée</h3>
+                <p>Emballage protecteur + présentation propre, prêt à offrir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OÙ ACHETER -->
+    <section id="where-buy" class="where-buy">
+        <h2 class="section-title">Où acheter ?</h2>
+        <p class="section-subtitle">Choisissez votre plateforme préférée</p>
+        
+        <div class="platforms-grid">
+            <a href="https://www.vinted.fr" target="_blank" rel="noopener" class="platform-btn">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Vinted</span>
+            </a>
+            <a href="https://www.etsy.com" target="_blank" rel="noopener" class="platform-btn">
+                <i class="fas fa-store"></i>
+                <span>Etsy</span>
+            </a>
+            <a href="https://www.ebay.fr" target="_blank" rel="noopener" class="platform-btn">
+                <i class="fas fa-gavel"></i>
+                <span>eBay</span>
+            </a>
+            <a href="https://www.leboncoin.fr" target="_blank" rel="noopener" class="platform-btn">
+                <i class="fas fa-tag"></i>
+                <span>Leboncoin</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section id="instagram" class="instagram">
+        <h2 class="section-title">Suivez-nous sur Instagram</h2>
+        <p class="instagram-handle">@les_creations_de_solena</p>
+        <p style="margin-bottom: 2rem;">Nouveautés, prototypes, impressions en cours et sorties du moment.</p>
+        <a href="https://www.instagram.com/les_creations_de_solena" target="_blank" rel="noopener" class="instagram-btn">
+            <i class="fab fa-instagram"></i>
+            Suivre sur Instagram
+        </a>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <h2 class="section-title">Questions fréquentes</h2>
+        <p class="section-subtitle script">Tout ce que vous devez savoir</p>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                Proposez-vous des créations personnalisées ?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Oui. Couleurs, dimensions, prénom/texte, ou adaptation d’un modèle selon faisabilité.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                Quels sont les délais de fabrication ?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Stock : 2–3 jours ouvrés. Personnalisation : selon la demande (on vous confirme avant validation).</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                Quels matériaux utilisez-vous ?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Nous imprimons principalement en PLA (idéal pour la décoration) et, selon les besoins, en PETG pour des pièces plus résistantes. Les matériaux peuvent varier selon la création. Pour toute demande spécifique, contactez-nous.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                Comment se passe l'expédition ?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>France métropolitaine via Mondial Relay/Colissimo selon la plateforme. Emballage protecteur.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+                Acceptez-vous les retours ?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Retours selon les conditions de la plateforme d’achat. Les pièces personnalisées ne sont généralement pas reprises sauf défaut.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contactez-nous</h2>
+        <p class="section-subtitle script">Une question ? Un projet ?</p>
+        
+        <div class="contact-buttons">
+            <a href="mailto:contact@lescreationsdesolena.fr" class="contact-btn contact-email">
+                <i class="fas fa-envelope"></i>
+                Email
+            </a>
+            <a href="https://www.instagram.com/les_creations_de_solena" target="_blank" rel="noopener" class="contact-btn contact-email">
+                <i class="fab fa-instagram"></i>
+                Instagram
+            </a>
+        </div>
+        
+        <p class="contact-info">Réponse sous 24-48h</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="#mentions">Mentions légales</a>
+            <a href="#confidentialite">Politique de confidentialité</a>
+        </div>
+        <p class="copyright">© 2025 Les créations de Solena - Tous droits réservés</p>
+    </footer>
+
+    <!-- JavaScript externe -->
+    <script src="script.js"></script>
+</body>
+</html>
