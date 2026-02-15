@@ -5,15 +5,71 @@ let currentSlide = 0;
 let creationsData = [];
 let isCarousel = false;
 
+// Données de secours en cas d'erreur de chargement JSON
+const fallbackData = {
+  "creations": [
+    {
+      "id": 1,
+      "nom": "Décoration murale macramé",
+      "description": "Pièce unique tissée à la main",
+      "image": "assets/images/macrame-mural.jpg",
+      "plateformes": ["Vinted", "Etsy"]
+    },
+    {
+      "id": 2,
+      "nom": "Coussin brodé bohème",
+      "description": "Motifs floraux délicats",
+      "image": "assets/images/coussin-brode.jpg",
+      "plateformes": ["Vinted", "Leboncoin"]
+    },
+    {
+      "id": 3,
+      "nom": "Attrape-rêves artisanal",
+      "description": "Plumes naturelles et perles",
+      "image": "assets/images/attrape-reves.jpg",
+      "plateformes": ["Etsy", "eBay"]
+    },
+    {
+      "id": 4,
+      "nom": "Guirlande lumineuse",
+      "description": "Ambiance chaleureuse garantie",
+      "image": "assets/images/guirlande.jpg",
+      "plateformes": ["Vinted", "Etsy"]
+    },
+    {
+      "id": 5,
+      "nom": "Panier tressé naturel",
+      "description": "Fibres végétales écologiques",
+      "image": "assets/images/panier-tresse.jpg",
+      "plateformes": ["Leboncoin", "eBay"]
+    },
+    {
+      "id": 6,
+      "nom": "Mobile bébé bohème",
+      "description": "Douceur et élégance",
+      "image": "assets/images/mobile-bebe.jpg",
+      "plateformes": ["Etsy", "Vinted"]
+    }
+  ]
+};
+
 // Charger les créations depuis le JSON
 async function loadCreations() {
     try {
         const response = await fetch('creations.json');
+        
+        // Vérifier si la requête a réussi
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         creationsData = data.creations;
         
         // Décider entre carrousel et grille
-        isCarousel = creationsData.length > 6;
+        // Plus de 6 items OU mobile avec plus de 3 items = carrousel
+        const isMobile = window.innerWidth <= 768;
+        isCarousel = creationsData.length > 6 || (isMobile && creationsData.length > 3);
         
         if (isCarousel) {
             renderCarousel();
@@ -21,8 +77,18 @@ async function loadCreations() {
             renderGrid();
         }
     } catch (error) {
-        console.error('Erreur lors du chargement des créations:', error);
-        // Afficher un message d'erreur ou un fallback
+        console.warn('⚠️ Erreur lors du chargement du JSON, utilisation des données de secours:', error);
+        
+        // Utiliser les données de secours
+        creationsData = fallbackData.creations;
+        const isMobile = window.innerWidth <= 768;
+        isCarousel = creationsData.length > 6 || (isMobile && creationsData.length > 3);
+        
+        if (isCarousel) {
+            renderCarousel();
+        } else {
+            renderGrid();
+        }
     }
 }
 
@@ -48,15 +114,20 @@ function createCard(creation) {
 function renderGrid() {
     const container = document.getElementById('creations-container');
     
-    // Limiter à 3 créations sur mobile (≤ 768px)
+    // Sur mobile (≤ 768px), utiliser le carrousel pour permettre de voir toutes les créations
     const isMobile = window.innerWidth <= 768;
-    const displayedCreations = isMobile ? creationsData.slice(0, 3) : creationsData;
     
-    container.innerHTML = `
-        <div class="creations-grid">
-            ${displayedCreations.map(creation => createCard(creation)).join('')}
-        </div>
-    `;
+    if (isMobile && creationsData.length > 3) {
+        // Mode carrousel mobile
+        renderCarousel();
+    } else {
+        // Mode grille normal
+        container.innerHTML = `
+            <div class="creations-grid">
+                ${creationsData.map(creation => createCard(creation)).join('')}
+            </div>
+        `;
+    }
 }
 
 // Affichage en carrousel (> 6 items)
@@ -67,7 +138,7 @@ function renderCarousel() {
         `<div class="carousel-item">${createCard(creation)}</div>`
     ).join('');
     
-    // Calculer le nombre de pages
+    // Calculer le nombre réel de pages/dots
     const itemsPerPage = getItemsPerPage();
     const totalPages = Math.ceil(creationsData.length / itemsPerPage);
     
@@ -101,9 +172,9 @@ function renderCarousel() {
 
 // Obtenir le nombre d'items par page selon la largeur d'écran
 function getItemsPerPage() {
-    if (window.innerWidth <= 640) return 1;
-    if (window.innerWidth <= 1024) return 2;
-    return 3;
+    if (window.innerWidth <= 768) return 1;  // Mobile jusqu'à 768px inclus
+    if (window.innerWidth <= 1024) return 2; // Tablette de 769 à 1024px
+    return 3; // Desktop au-dessus de 1024px
 }
 
 // Mettre à jour l'affichage du carrousel
@@ -111,20 +182,27 @@ function updateCarousel() {
     if (!isCarousel) return;
     
     const track = document.getElementById('carousel-track');
+    if (!track) return;
+    
     const itemsPerPage = getItemsPerPage();
     const totalPages = Math.ceil(creationsData.length / itemsPerPage);
+    const currentPage = Math.floor(currentSlide / itemsPerPage);
     
-    // Limiter currentSlide
-    if (currentSlide >= totalPages) currentSlide = totalPages - 1;
+    // Limiter à la dernière page
+    if (currentPage >= totalPages) {
+        currentSlide = (totalPages - 1) * itemsPerPage;
+    }
     if (currentSlide < 0) currentSlide = 0;
     
-    // Déplacer le carrousel
-    const offset = currentSlide * 100;
-    track.style.transform = `translateX(-${offset}%)`;
+    // Déplacement simple : chaque slide = 100% de la largeur du conteneur
+    const percentage = (currentSlide / itemsPerPage) * 100;
+    track.style.transform = `translateX(-${percentage}%)`;
     
     // Mettre à jour les dots
+    const activePage = Math.floor(currentSlide / itemsPerPage);
+    
     document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
+        dot.classList.toggle('active', index === activePage);
     });
     
     // Mettre à jour les boutons
@@ -132,42 +210,71 @@ function updateCarousel() {
     const nextBtn = document.getElementById('next-btn');
     
     if (prevBtn) prevBtn.disabled = currentSlide === 0;
-    if (nextBtn) nextBtn.disabled = currentSlide === totalPages - 1;
+    if (nextBtn) {
+        const isLastPage = activePage >= totalPages - 1;
+        nextBtn.disabled = isLastPage;
+    }
 }
 
 // Navigation du carrousel
 function nextSlide() {
     const itemsPerPage = getItemsPerPage();
     const totalPages = Math.ceil(creationsData.length / itemsPerPage);
+    const currentPage = Math.floor(currentSlide / itemsPerPage);
     
-    if (currentSlide < totalPages - 1) {
-        currentSlide++;
+    if (currentPage < totalPages - 1) {
+        // Avancer d'une PAGE complète
+        currentSlide = (currentPage + 1) * itemsPerPage;
         updateCarousel();
     }
 }
 
 function previousSlide() {
-    if (currentSlide > 0) {
-        currentSlide--;
+    const itemsPerPage = getItemsPerPage();
+    const currentPage = Math.floor(currentSlide / itemsPerPage);
+    
+    if (currentPage > 0) {
+        // Reculer d'une PAGE complète
+        currentSlide = (currentPage - 1) * itemsPerPage;
         updateCarousel();
     }
 }
 
-function goToSlide(index) {
-    currentSlide = index;
+function goToSlide(pageIndex) {
+    const itemsPerPage = getItemsPerPage();
+    currentSlide = pageIndex * itemsPerPage;
     updateCarousel();
 }
 
 // Recalculer lors du redimensionnement
 let resizeTimeout;
+let previousItemsPerPage = getItemsPerPage();
+
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-        if (isCarousel) {
+        const isMobile = window.innerWidth <= 768;
+        const shouldBeCarousel = creationsData.length > 6 || (isMobile && creationsData.length > 3);
+        const currentItemsPerPage = getItemsPerPage();
+        
+        // Si le nombre d'items par page a changé, reconstruire le carrousel
+        if (currentItemsPerPage !== previousItemsPerPage && isCarousel) {
+            previousItemsPerPage = currentItemsPerPage;
+            currentSlide = 0; // Reset la position
+            renderCarousel();
+        }
+        // Si le mode a changé (grille <-> carrousel), reconstruire
+        else if (shouldBeCarousel !== isCarousel) {
+            isCarousel = shouldBeCarousel;
+            if (isCarousel) {
+                renderCarousel();
+            } else {
+                renderGrid();
+            }
+        } 
+        // Sinon juste mettre à jour la position
+        else if (isCarousel) {
             updateCarousel();
-        } else {
-            // Recalculer l'affichage de la grille en cas de changement mobile/desktop
-            renderGrid();
         }
     }, 250);
 });

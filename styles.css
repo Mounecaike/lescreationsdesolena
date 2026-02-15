@@ -274,22 +274,113 @@ section {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    overflow: hidden;
+    padding: 0 60px;
 }
 
 .carousel-wrapper {
-    display: flex;
-    transition: transform 0.4s ease-in-out;
+    overflow: hidden;
 }
 
 .carousel-track {
     display: flex;
     gap: 2rem;
+    transition: transform 0.4s ease-in-out;
+    will-change: transform;
 }
 
+/* Desktop : 3 items visibles */
 .carousel-item {
-    flex: 0 0 calc(33.333% - 1.33rem);
-    min-width: 280px;
+    flex: 0 0 calc(33.333% - 1.34rem);
+    min-width: 0;
+}
+
+/* Tablette : 2 items visibles avec VRAI gap */
+@media (max-width: 1024px) {
+    .carousel-item {
+        flex: 0 0 calc(50% - 1rem);
+        margin: 0;
+    }
+    
+    .carousel-track {
+        gap: 2rem;
+    }
+    
+    .carousel-container {
+        padding: 0 40px;
+    }
+}
+
+/* Mobile : 1 item visible avec marges latérales */
+@media (max-width: 768px) {
+    .carousel-item {
+        flex: 0 0 85%;
+        margin: 0 7.5%;
+    }
+    
+    .carousel-track {
+        gap: 0;
+    }
+    
+    .carousel-container {
+        padding: 0 10px;
+    }
+}
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.carousel-btn {
+    background: var(--terracotta);
+    color: var(--white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px var(--shadow-soft);
+}
+
+.carousel-btn:hover {
+    background: #B67761;
+    transform: scale(1.1);
+}
+
+.carousel-btn:disabled {
+    background: var(--sage);
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(1);
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--sage);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 0.5;
+}
+
+.carousel-dot.active {
+    background: var(--terracotta);
+    opacity: 1;
+    transform: scale(1.2);
 }
 
 /* Boutons de navigation du carrousel */
@@ -349,23 +440,6 @@ section {
     background: var(--terracotta);
     opacity: 1;
     transform: scale(1.2);
-}
-
-/* Responsive carrousel */
-@media (max-width: 1024px) {
-    .carousel-item {
-        flex: 0 0 calc(50% - 1rem);
-    }
-}
-
-@media (max-width: 640px) {
-    .carousel-item {
-        flex: 0 0 100%;
-    }
-    
-    .carousel-track {
-        gap: 1rem;
-    }
 }
 
 .creation-card {
