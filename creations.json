@@ -2,45 +2,45 @@
   "creations": [
     {
       "id": 1,
-      "nom": "Décoration murale macramé",
-      "description": "Pièce unique tissée à la main",
-      "image": "assets/images/macrame-mural.jpg",
-      "plateformes": ["Vinted", "Etsy"]
-    },
-    {
-      "id": 2,
-      "nom": "Coussin brodé bohème",
-      "description": "Motifs floraux délicats",
-      "image": "assets/images/coussin-brode.jpg",
+      "nom": "Figurine chat décoratif",
+      "description": "Support imprimé en 3D permettant d’exposer facilement une plaque décorative, une carte ou un objet plat.",
+      "image": "assets/images/image9.jpeg",
       "plateformes": ["Vinted", "Leboncoin"]
     },
     {
+      "id": 2,
+      "nom": "Statue méditation design",
+      "description": "Statue minimaliste inspirée de la méditation. Design moderne avec ouverture centrale.",
+      "image": "assets/images/zen_pose.jpg",
+      "plateformes": ["Vinted", "Leboncoin", "Etsy"]
+    },
+    {
       "id": 3,
-      "nom": "Attrape-rêves artisanal",
-      "description": "Plumes naturelles et perles",
-      "image": "assets/images/attrape-reves.jpg",
-      "plateformes": ["Etsy", "eBay"]
+      "nom": "Statue couple décorative",
+      "description": "Statue représentant un couple enlacé. Objet décoratif élégant pour une étagère ou une table.",
+      "image": "assets/images/couple_entrelace.jpeg",
+      "plateformes": ["Etsy", "Vinted", "Leboncoin"]
     },
     {
       "id": 4,
-      "nom": "Guirlande lumineuse",
-      "description": "Ambiance chaleureuse garantie",
-      "image": "assets/images/guirlande.jpg",
+      "nom": "Support double gobelet voiture",
+      "description": "Support imprimé en 3D pour Golf V et VI, permettant d’ajouter deux emplacements pour gobelets dans le véhicule.",
+      "image": "assets/images/support_gobelet_voiture.jpg",
       "plateformes": ["Vinted", "Etsy"]
     },
     {
       "id": 5,
-      "nom": "Panier tressé naturel",
-      "description": "Fibres végétales écologiques",
-      "image": "assets/images/panier-tresse.jpg",
-      "plateformes": ["Leboncoin", "eBay"]
+      "nom": "Toile Chroma personnalisée",
+      "description": "Transformez votre photo en illustration style cartoon, puis en tableau relief imprimé en 3D avec une palette de couleurs Chroma. Une création originale et personnalisée, parfaite pour offrir ou décorer.",
+      "image": "assets/images/toile_chroma_personalisable.jpeg",
+      "plateformes": ["Etsy"]
     },
     {
       "id": 6,
-      "nom": "Mobile bébé bohème",
-      "description": "Douceur et élégance",
-      "image": "assets/images/mobile-bebe.jpg",
-      "plateformes": ["Etsy", "Vinted"]
+      "nom": "Plaque décorative Pokémon – Dracaufeu",
+      "description": "Plaque décorative inspirée de l’univers Pokémon, imprimée en 3D avec plusieurs couches de couleurs pour créer un effet relief. Idéale pour une étagère, un bureau ou une collection gaming.",
+      "image": "assets/images/plaque_dragonball.jpeg",
+      "plateformes": ["Etsy", "Vinted", "Leboncoin"]
     }
   ]
 }
